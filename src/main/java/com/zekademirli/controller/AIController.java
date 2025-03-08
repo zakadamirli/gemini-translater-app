@@ -21,8 +21,8 @@ public class AIController {
         return ResponseEntity.ok(answer);
     }
 
-    @PostMapping("test")
-    public ResponseEntity<String> getQuestion() {
-        return ResponseEntity.ok(qnaService.test());
-    }
+//    @PostMapping("test")
+//    public ResponseEntity<String> getQuestion() {
+//        return ResponseEntity.ok(qnaService.test());
+//    }
 }
