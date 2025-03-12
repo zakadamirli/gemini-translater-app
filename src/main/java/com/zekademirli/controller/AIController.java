@@ -1,8 +1,6 @@
 package com.zekademirli.controller;
 
 import com.zekademirli.service.QnaService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +16,9 @@ public class AIController {
         this.qnaService = qnaService;
     }
 
-    @PostMapping("/ask")
-    public ResponseEntity<String> askQuestion(@RequestBody Map<String, String> payload) {
+    @CrossOrigin(origins = "*")
+    @GetMapping("/ask")
+    public ResponseEntity<String> askQuestion(@RequestParam Map<String, String> payload) {
         String question = payload.get("question");
         String answer = qnaService.getAnswer(question);
         return ResponseEntity.ok(answer);
