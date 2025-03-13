@@ -27,12 +27,21 @@ public class QnaService {
         this.objectMapper = new ObjectMapper();
     }
 
+    public String test() {
+        return new Random().nextInt(100) + "test";
+    }
+
     public String getAnswer(String word) {
-        String promptGemini = "Explain etymology of " + word + " in english and in azerbaijani with 1 sentence in each. make answer as concise as possible";
+        String woc = "Find an Azerbaijani word that sounds similar to \"" + word + "\" (only phonetically similar, not lexically connected). " +
+                "Then create an Azerbaijani sentence using both this phonetically similar word AND the Azerbaijani translation of \"" + word + "\" itself. " +
+                "Format your response EXACTLY like this example:\n\n" +
+                "\"" + word + "\" (mənası: [meaning of word]) sözünə səslənən Azərbaycan sözü [phonetically similar word].\n" +
+                "[Example sentence in Azerbaijani using both the phonetically similar word and the translation of " + word + "].\n\n" +
+                "Do not add any explanations or additional text. Do not use any asterisks (*) or markdown formatting in your response. ONLY provide these two lines in the exact format shown.";
 
         Map<String, Object> requestBody = Map.of(
                 "contents", List.of(
-                        Map.of("parts", List.of(Map.of("text", promptGemini)))
+                        Map.of("parts", List.of(Map.of("text", woc)))
                 )
         );
 
