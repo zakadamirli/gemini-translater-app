@@ -29,7 +29,6 @@ public class QnaService {
 
     public String getAnswer(String word) {
         String promptGemini = "Explain etymology of " + word + " in english and in azerbaijani with 1 sentence in each. make answer as concise as possible";
-
         Map<String, Object> requestBody = Map.of(
                 "contents", List.of(
                         Map.of("parts", List.of(Map.of("text", promptGemini)))
