@@ -52,10 +52,8 @@ public class TranslateService {
                 .block();
 
         try {
-            // Parse the JSON response
             JsonNode rootNode = objectMapper.readTree(response);
 
-            // Extract text from the specific path in the JSON structure
             if (rootNode.has("candidates") && rootNode.get("candidates").isArray() && rootNode.get("candidates").size() > 0) {
                 JsonNode textNode = rootNode
                         .get("candidates")
@@ -78,10 +76,8 @@ public class TranslateService {
     }
 
     private String formatResponseBilingual(String word, String text) {
-        // Remove any markdown or special characters
         String cleaned = text.replaceAll("\\*", "");
 
-        // Define patterns to extract English and Azerbaijani parts
         Pattern englishPattern = Pattern.compile("English:\\s*(.*?)(?=\\s*Azərbaycan:|$)", Pattern.DOTALL);
         Pattern azerbaijaniPattern = Pattern.compile("Azərbaycan:\\s*(.*?)$", Pattern.DOTALL);
 
@@ -91,7 +87,6 @@ public class TranslateService {
         String englishPart = englishMatcher.find() ? englishMatcher.group(1).trim() : "";
         String azerbaijaniPart = azerbaijaniMatcher.find() ? azerbaijaniMatcher.group(1).trim() : "";
 
-        // If we couldn't find the labeled parts, try to split by paragraph
         if (englishPart.isEmpty() || azerbaijaniPart.isEmpty()) {
             String[] paragraphs = cleaned.split("\\n\\n|\\n");
             if (paragraphs.length >= 2) {
@@ -100,17 +95,13 @@ public class TranslateService {
             }
         }
 
-        // Format with explicit line breaks
         StringBuilder result = new StringBuilder();
 
-        // English part
         result.append("English: ")
                 .append(englishPart);
 
-        // Add a clear line break
         result.append("\n\n");
 
-        // Azerbaijani part
         result.append("Azərbaycan: ")
                 .append(azerbaijaniPart);
 
