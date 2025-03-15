@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/qna")
+@RequestMapping("/api/v1")
 public class TranslateController {
 
     private final TranslateService translateService;
@@ -17,15 +17,10 @@ public class TranslateController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/ask")
+    @GetMapping("/gemini/word-info")
     public ResponseEntity<String> askQuestion(@RequestParam Map<String, String> payload) {
         String question = payload.get("question");
         String answer = translateService.getAnswer(question);
         return ResponseEntity.ok(answer);
     }
-
-//    @PostMapping("test")
-//    public ResponseEntity<String> getQuestion() {
-//        return ResponseEntity.ok(qnaService.test());
-//    }
 }
