@@ -22,7 +22,7 @@
 <p>
   <img src="/src/main/resources/static/img.png" alt="Extension Banner" width="400" style="vertical-align: middle; margin-right: 5px;">
 
-###  `Archery sözünün Fransız və Latın sözlərindən yaranması haqqında həm ingiliscə həmdə azərbaycanca məlumat verir.`
+####  `Archery sözünün Fransız və Latın sözlərindən yaranması haqqında həm ingiliscə həmdə azərbaycanca məlumat verir.`
 
 
 </p>
